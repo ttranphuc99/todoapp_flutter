@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:todo_app/src/models/todo.dart';
 import 'package:todo_app/src/repositories/todo_repository.dart';
+import 'package:todo_app/src/widget/my_snackbar.dart';
 
 class TodoBloc {
   // context of the UI to call snackbar
@@ -14,6 +15,9 @@ class TodoBloc {
   Stream<List<Todo>> get listTodoStream => _listTodoPublic.stream;
   // to hold the state of list to do
   List<Todo> _listTodoData;
+
+  // TodoBloc constructor
+  TodoBloc(this._context);
 
   /*
    * Function to close publish subject
@@ -46,7 +50,7 @@ class TodoBloc {
 
       _listTodoPublic.sink.add(_listTodoData);
     } catch (e) {
-
+      MySnackbar.showSnackbar(_context, 'Error');
     }
     return null;
   }
@@ -58,7 +62,7 @@ class TodoBloc {
     try {
       return _repository.update(editedTodo);
     } catch (e) {
-
+      MySnackbar.showSnackbar(_context, 'Error');
     }
     return null;
   }
