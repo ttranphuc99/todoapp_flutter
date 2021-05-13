@@ -2,27 +2,45 @@ import 'package:flutter/material.dart';
 import 'package:todo_app/src/models/todo.dart';
 
 class TodoWidget {
-  Widget buildElement(Todo todo, handleChange) {
+  Widget buildElement(Todo todo, handleChangeIsDone) {
     return ListTile(
-      title: Row(
+      title: Column(
         children: [
-          Expanded(
-            child: Column(
-              children: [
-                // Title of todo
-                Text(todo.title),
-                // Content
-                Text(todo.content)
-              ],
-            ),
+          Row(
+            children: [
+              Expanded(
+                child: Column(
+                  children: [
+                    // Title of todo
+                    _buildTitle(todo),
+                    // Content
+                    Text(todo.content),
+                  ],
+                ),
+              ),
+              Checkbox(
+                  value: todo.isDone,
+                  onChanged: (bool value) {
+                    todo.isDone = value;
+                    handleChangeIsDone(todo);
+                  }),
+            ],
           ),
-          Checkbox(
-            value: todo.isDone,
-            onChanged: (bool value) {
-              handleChange(value);
-            }
-          )
+          Divider(height: 30, thickness: 3, color: Colors.teal[900]),
         ],
+      ),
+    );
+  }
+
+  Widget _buildTitle(Todo todo) {
+    return Align(
+      alignment: Alignment.topLeft,
+      child: Text(
+        todo.title,
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w900,
+        ),
       ),
     );
   }
