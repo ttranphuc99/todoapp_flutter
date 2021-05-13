@@ -4,28 +4,33 @@ import 'package:todo_app/src/models/todo.dart';
 class TodoWidget {
   Widget buildElement(Todo todo, handleChangeIsDone) {
     return ListTile(
-      title: Column(
-        children: [
-          Row(
-            children: [
-              Expanded(
-                child: Column(
-                  children: [
-                    // Title of todo
-                    _buildTitle(todo),
-                  ],
-                ),
+      title: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.black12,
+          boxShadow: [
+            BoxShadow(color: Colors.black12, spreadRadius: 1),
+          ],
+        ),
+        padding: EdgeInsets.symmetric(horizontal: 10),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  // Title of todo
+                  _buildTitle(todo),
+                ],
               ),
-              Checkbox(
-                  value: todo.isDone,
-                  onChanged: (bool value) {
-                    todo.isDone = value;
-                    handleChangeIsDone(todo);
-                  }),
-            ],
-          ),
-          Divider(height: 30, thickness: 3, color: Colors.teal[900]),
-        ],
+            ),
+            Checkbox(
+                value: todo.isDone,
+                onChanged: (bool value) {
+                  todo.isDone = value;
+                  handleChangeIsDone(todo);
+                }),
+          ],
+        ),
       ),
     );
   }
@@ -37,7 +42,7 @@ class TodoWidget {
         todo.title,
         style: TextStyle(
           fontSize: 20,
-          fontWeight: FontWeight.w900,
+          fontWeight: FontWeight.w500,
         ),
       ),
     );
