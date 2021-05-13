@@ -35,19 +35,24 @@ class TodoBloc {
    */
   Future<List<Todo>> loadListTodo(num mode) async {
     try {
+      // get lis todo
       _listTodoData = await _repository.getAll();
 
+      // filter list todo by its status
       switch (mode) {
+        // filter list done todo
         case 1: {
           _listTodoData = _listTodoData.where((todo) => todo.isDone).toList();
           break;
         }
+        // filter list undone todo
         case 2: {
           _listTodoData = _listTodoData.where((todo) => !todo.isDone).toList();
           break;
         }
       }
 
+      // put the result to stream to deliver to screen
       _listTodoPublic.sink.add(_listTodoData);
     } catch (e) {
       MySnackbar.showSnackbar(_context, 'Error');

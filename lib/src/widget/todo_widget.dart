@@ -35,6 +35,7 @@ class TodoWidget {
     );
   }
 
+  // function to build title of the todo
   Widget _buildTitle(Todo todo) {
     return Align(
       alignment: Alignment.topLeft,
