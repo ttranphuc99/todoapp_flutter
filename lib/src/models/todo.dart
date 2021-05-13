@@ -13,4 +13,19 @@ class Todo {
     content = _content,
     isDone = _isDone,
     createdTime = _createdTime;
+
+  Todo.fromJSON(Map<String, dynamic> json) :
+    id = json['id'],
+    title = json['title'],
+    content = json['content'],
+    isDone = json['isDone'],
+    createdTime = DateTime.parse(json['createdTime']);
+
+  Map<String, dynamic> toJSON() => {
+    'id': id,
+    'title': title,
+    'content': content,
+    'isDone': isDone,
+    'createdTime': createdTime.toString()
+  };
 }

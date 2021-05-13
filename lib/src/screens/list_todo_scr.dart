@@ -23,6 +23,7 @@ class _ListTodoState extends State<ListTodo> {
   void initState() {
     super.initState();
     _bloc = TodoBloc(context);
+    _bloc.loadListTodo(widget.mode);
   }
 
   @override
@@ -59,7 +60,7 @@ class _ListTodoState extends State<ListTodo> {
                         )
                       );
                     }
-                    _bloc.loadListTodo(widget.mode);
+                    
                     return Text('Loading');
                   },
                 )

@@ -10,14 +10,14 @@ class TodoRepository {
    * Function to get all todo in storage 
    * order by created time descending 
    */
-  List<Todo> getAll () {
+  Future<List<Todo>> getAll () {
     return _provider.getAll();
   }
 
   /*
    * Function to update a todo in storage
    */
-  Todo update(Todo editedTodo) {
+  Future<Todo> update(Todo editedTodo) {
     return _provider.update(editedTodo);
   }
 }

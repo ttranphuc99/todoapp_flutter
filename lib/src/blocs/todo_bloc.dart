@@ -33,9 +33,9 @@ class TodoBloc {
    * mode 1: get done todo
    * mode 2: get undone todo
    */
-  List<Todo> loadListTodo(num mode) {
+  Future<List<Todo>> loadListTodo(num mode) async {
     try {
-      _listTodoData = _repository.getAll();
+      _listTodoData = await _repository.getAll();
 
       switch (mode) {
         case 1: {
@@ -51,6 +51,7 @@ class TodoBloc {
       _listTodoPublic.sink.add(_listTodoData);
     } catch (e) {
       MySnackbar.showSnackbar(_context, 'Error');
+      throw e;
     }
     return null;
   }
@@ -58,9 +59,11 @@ class TodoBloc {
   /*
    * This function is to change status of a todo
    */
-  Todo changeStatus(editedTodo) {
+  Future<Todo> changeStatus(editedTodo) async {
     try {
-      return _repository.update(editedTodo);
+      var result = await _repository.update(editedTodo);
+
+      return result;
     } catch (e) {
       MySnackbar.showSnackbar(_context, 'Error');
     }
