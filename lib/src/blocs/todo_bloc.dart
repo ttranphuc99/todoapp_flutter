@@ -51,7 +51,6 @@ class TodoBloc {
       _listTodoPublic.sink.add(_listTodoData);
     } catch (e) {
       MySnackbar.showSnackbar(_context, 'Error');
-      throw e;
     }
     return null;
   }

@@ -18,6 +18,7 @@ class TodoProvider {
    */
   Future<List<Todo>> getAll() async {
     if (sharedPreferences == null) {
+      print('in null');
       sharedPreferences = await SharedPreferences.getInstance();
     }
     // get saved data as string
@@ -66,7 +67,6 @@ class TodoProvider {
     if (currTodo != null) {
       // asign new value to current todo
       currTodo.title = editedTodo.title;
-      currTodo.content = editedTodo.content;
       currTodo.isDone = editedTodo.isDone;
     }
 

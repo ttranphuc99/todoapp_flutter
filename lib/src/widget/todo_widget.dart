@@ -13,8 +13,6 @@ class TodoWidget {
                   children: [
                     // Title of todo
                     _buildTitle(todo),
-                    // Content
-                    Text(todo.content),
                   ],
                 ),
               ),
